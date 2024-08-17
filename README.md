@@ -1,2 +1,2 @@
 # wp_profile
-WordPress Profile Theme
+WordPress Profile Theme.
