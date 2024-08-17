@@ -8,7 +8,7 @@ function load_stylesheets(){
     // wp_register_style('font1', 'https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&display=swap', array(), 1, 'all');
     wp_enqueue_style('font1');
     
-    wp_register_style('style', get_template_directory_uri() . '/style/affordableseniorliving.css?1', array(), 1, 'all');
+    wp_register_style('style', get_template_directory_uri() . '/style/profile.css?1', array(), 1, 'all');
     wp_enqueue_style('style');    
 }
 add_action('wp_enqueue_scripts', 'load_stylesheets');
