@@ -8,3 +8,89 @@ body {
     font-size: 18px;
 }
 
+section.splash{
+    
+    height: calc(100vh - 118px);
+}
+.spashItems {
+    display: flex;
+}
+
+div#splashTitle {
+    font-size: 24px;
+    margin: 30px;
+}
+
+#keyboard-base {
+    max-width: 1085px;
+    min-width: 1085px;
+    padding: 20px;
+    transform: perspective(1000px) translate3d(200%, 10%, 0px) rotate3d(1, 0, 0, 59deg) scale(1);
+    background-color: rgb(197, 197, 197);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(30, 30px);
+    grid-template-rows: repeat(5, 60px);
+    grid-gap: 5px;
+}
+
+#keyboard-base.inPlace{
+    transition: transform 2s;
+    transform: perspective(1000px) translate3d(0px, 0px, -814px) rotate3d(1, 0, 0, 59deg) scale(1);
+}
+
+.key {
+    background-color: rgb(243, 243, 243);
+    border: 2px solid black;
+    border-radius: 5px;
+    grid-column: span 2;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 17px;
+}
+
+.key:hover {
+  border: 1px solid #eeeeee;
+  
+}
+
+.delete {
+    grid-column: span 4;
+}
+
+.tab {
+    grid-column: span 3;
+}
+
+.backslash {
+    grid-column: span 3;
+}
+
+.capslock {
+    grid-column: span 4;
+}
+
+.return {
+    grid-column: span 4;
+}
+
+.leftshift {
+    grid-column: span 5;
+}
+
+.rightshift {
+    grid-column: span 5;
+}
+
+.leftctrl {
+    grid-column: span 3;
+}
+
+.command {
+    grid-column: span 3;
+    font-size: 14px;
+}
+
+.space {
+    grid-column: span 13;
+}

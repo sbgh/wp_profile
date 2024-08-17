@@ -1,7 +1,7 @@
 <?php
 
 function load_stylesheets(){ 
-    wp_register_style('bsStyle', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css', array(), 1, 'all');
+    wp_register_style('bsStyle', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css', array(), 1, 'all');
     wp_enqueue_style('bsStyle');
     
     // fonts
@@ -18,7 +18,7 @@ add_action('wp_enqueue_scripts', 'load_stylesheets');
 function addjs(){
     wp_register_script('jquery', 'https://code.jquery.com/jquery-3.5.1.js', "", 1, 1, 1);
     wp_enqueue_script('jquery');
-    wp_register_script('bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js', "", 1, 1, 1);
+    wp_register_script('bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js', "", 1, 1, 1);
     wp_enqueue_script('bootstrap');
     // wp_register_script('custom',  get_template_directory_uri() . '/custom.js', "", 1, 1, 1);
     // wp_enqueue_script('custom');
