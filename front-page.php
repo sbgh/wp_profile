@@ -1,14 +1,15 @@
 <?php get_header(); ?>
 <div class="splash">
 
-    <div class="spashItems">
-        <div class="spashItem">
+    <div id="glassback" class="glassback"></div>
+    <div class="splashItems">
+        <div class="splashItem">
             <div id="splashTitle" class="splashTitle">
                 <p>KILANICORP</p>
             </div>
 
         </div>
-        <div class="spashItem">
+        <div class="splashItem">
 
             <div id="keyboard-base" class="keyboard-base">
                 <div class="key">~</div>
@@ -82,4 +83,11 @@
 
 
 </div>
+<style>
+    .glassback {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            url(<?php getMyImage(get_field('Background1'), 'large'); ?>);
+    }
+</style>
+
 <?php get_footer(); ?>

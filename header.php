@@ -41,10 +41,13 @@
     </nav>
     
     
-
     <script>
         jQuery(document).ready(function($) {
-            console.log("ready")
+            // console.log("ready")
+
+
             $("#keyboard-base").addClass("inPlace")
+
+
         });
     </script>
