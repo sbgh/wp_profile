@@ -8,23 +8,43 @@ body {
     font-size: 18px;
 }
 
-section.splash{
-    
-    height: calc(100vh - 118px);
+div#navbarNav {
+    justify-content: right;
 }
+
+  .splash {
+    height: calc(100vh - 91px);
+}
+
 .spashItems {
     display: flex;
+    justify-content: center;
+    height: 100%;
 }
+
+.spashItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} 
 
 div#splashTitle {
     font-size: 24px;
     margin: 30px;
 }
 
+
+
+
+
+
+
+
+
+
 #keyboard-base {
-    max-width: 1085px;
-    min-width: 1085px;
-    padding: 20px;
+    padding: 0px;
+    /* transform-origin: 300px; */
     transform: perspective(1000px) translate3d(200%, 10%, 0px) rotate3d(1, 0, 0, 59deg) scale(1);
     background-color: rgb(197, 197, 197);
     border-radius: 10px;
@@ -36,7 +56,7 @@ div#splashTitle {
 
 #keyboard-base.inPlace{
     transition: transform 2s;
-    transform: perspective(1000px) translate3d(0px, 0px, -814px) rotate3d(1, 0, 0, 59deg) scale(1);
+    transform: perspective(1000px) translate3d(0px, 0px, -814px) rotate3d(1, 0, 0, 59deg) scale(.8);
 }
 
 .key {

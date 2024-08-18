@@ -1,6 +1,5 @@
 <?php get_header(); ?>
-
-<section class="splash">
+<div class="splash">
 
     <div class="spashItems">
         <div class="spashItem">
@@ -82,5 +81,5 @@
 
 
 
-</section>
+</div>
 <?php get_footer(); ?>
