@@ -52,6 +52,11 @@
             }
 
             //do 
+
+            $("#splashTitle").css({
+                "transform": "translateX(0px)"
+            });
+
             let target = '.key'
             document.querySelectorAll(target).forEach((i) => {
                 if (i) {
@@ -113,6 +118,9 @@
 
                     }
                 });
+                setTimeout(function() {
+                    keyPunch()
+                }, 30000)
 
             }
             setTimeout(function() {
@@ -121,6 +129,7 @@
 
             setTimeout(function() {
                 $("#imageback").css({
+                    "transition": "opacity 6s",
                     "opacity": "1"
                 })
             }, 16000)
