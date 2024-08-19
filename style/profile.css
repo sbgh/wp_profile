@@ -11,7 +11,8 @@ body {
 }
 
 .main {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: calc(100vh - 118px);
 }
 
@@ -105,13 +106,17 @@ div#whyUsWords {
 }
 
 div#serviceList {
-    background-color: black;
+    background-color: #212529;
     display: grid;
     grid-template-columns: repeat(3, 353px);
-    grid-template-rows: repeat(2, 165px);
+    grid-template-rows: repeat(2, 267px);
     grid-gap: 9px;
     justify-content: center;
     padding: 60px 0; 
+}
+
+.serviceItem {
+    box-shadow: inset -10px -10px 15px rgb(20 20 20 / 50%), inset 10px 10px 15px rgb(65 65 65 / 94%);
 }
 
 .serviceItemName {
@@ -222,4 +227,12 @@ div#serviceList {
 
 .space {
     grid-column: span 13;
+}
+
+@media (max-width: 1530px) {
+
+    div#splashMoto {
+        text-align: center;
+    }
+
 }
