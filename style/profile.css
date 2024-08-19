@@ -6,6 +6,13 @@ html {
 body {
     font-family: Arial;
     font-size: 18px;
+    color: white;
+}
+
+.megrim-regular {
+    font-family: "Megrim", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
 div#navbarNav {
@@ -14,13 +21,32 @@ div#navbarNav {
 
 .splash {
     height: calc(100vh - 91px);
+    background-color: #00050c;
 }
 
-.splashItems, #glassback {
+.splashItems, #glassback, #imageback {
     display: flex;
     justify-content: center;
     height: 100%;
-    position: absolute; 
+}
+
+.splashItems {
+    position: absolute;
+}
+
+.glassback {
+    width: 100%;
+    opacity: 0.4;
+    position: absolute;
+    backdrop-filter: blur(7px);
+}
+
+.imageback {
+    position: absolute;
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    opacity: 0;
 }
 
 .splashItem {
@@ -30,7 +56,7 @@ div#navbarNav {
 }
 
 div#splashTitle {
-    font-size: 24px;
+    font-size: 70px;
     margin: 30px;
 }
 
@@ -45,29 +71,36 @@ div#splashTitle {
 
 #keyboard-base {
     padding: 0px;
-    /* transform-origin: 300px; */
-    transform: perspective(1000px) translate3d(200%, 10%, 0px) rotate3d(1, 0, 0, 59deg) scale(1);
-    background-color: rgb(197, 197, 197);
+    transform-origin: 300px;
+    transform: perspective(1000px) translate3d(0px, 0px, 0px) rotate3d(1, 0, 0, 0deg) scale(.5);
+    background-color: rgb(0, 0, 0, 0);
     border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(30, 30px);
     grid-template-rows: repeat(5, 60px);
-    grid-gap: 5px;
+    grid-gap: 9px;
 }
 
 #keyboard-base.inPlace {
-    transition: transform 2s;
-    transform: perspective(1000px) translate3d(0px, 0px, -814px) rotate3d(1, 0, 0, 59deg) scale(.8);
+    transition: transform 2s ease-out;
+    transform: perspective(1000px) translate3d(0px, 0px, 40px) rotate3d(1, 0, 0, 50deg) scale(.5);
+}
+
+.key.inPlace {
+    transition: transform 10s ease-out, opacity 5s !important;
+    opacity: .8 !important;
+    transform: none !important;
 }
 
 .key {
-    background-color: rgb(243, 243, 243);
-    border: 2px solid black;
+    background-color: rgb(0 0 0);
+    border: 2px solid #b91515;
     border-radius: 5px;
     grid-column: span 2;
     font-size: 20px;
     text-align: center;
     padding-top: 17px;
+    opacity: 0;
 }
 
 .key:hover {

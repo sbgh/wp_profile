@@ -1,13 +1,12 @@
 <?php get_header(); ?>
 <div class="splash">
 
-    <div id="glassback" class="glassback"></div>
+    <div id="imageback" class="imageback"></div>
     <div class="splashItems">
         <div class="splashItem">
-            <div id="splashTitle" class="splashTitle">
+            <div id="splashTitle" class="splashTitle megrim-regular">
                 <p>KILANICORP</p>
             </div>
-
         </div>
         <div class="splashItem">
 
@@ -78,15 +77,14 @@
 
         </div>
     </div>
-
-
-
+    <!-- <div id="glassback" class="glassback"></div> -->
 
 </div>
+
 <style>
-    .glassback {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-            url(<?php getMyImage(get_field('Background1'), 'large'); ?>);
+    .imageback {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url(<?php getMyImage(get_field('background1'), 'large'); ?>);
     }
 </style>
 
