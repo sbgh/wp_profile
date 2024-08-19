@@ -7,6 +7,10 @@ function load_stylesheets(){
     // fonts
     wp_register_style('font1', 'https://fonts.googleapis.com/css2?family=Megrim&display=swap', array(), 1, 'all');
     wp_enqueue_style('font1');
+
+    wp_register_style('font2', 'https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap', array(), 1, 'all');
+    wp_enqueue_style('font2');
+
     wp_register_style('style', get_template_directory_uri() . '/style/profile.css?1', array(), 1, 'all');
     wp_enqueue_style('style');    
 }

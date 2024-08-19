@@ -6,7 +6,7 @@ wp_footer();
     $page = get_page_by_path('footer'); 
 ?>
 
-<footer class="footer">
+<footer class="footer footerSection">
 
     <div class="row ">
 
@@ -21,10 +21,10 @@ wp_footer();
         </div>
 
         <div class="col-4 footer-map">
-            <div class="footerMap map-responsive"><iframe frameborder="0"
+            <!-- <div class="footerMap map-responsive"><iframe frameborder="0"
                     src="https://www.google.com/maps/embed/v1/place?key=<?php the_field('google_maps_key', $page->ID);?>&amp;q=the+metropolitan+1235+11+ave+sw+calgary+ab+t3c+0m5"
                     allowfullscreen="">
-            </iframe></div>
+            </iframe></div> -->
         </div>
     </div>
 </footer>
