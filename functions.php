@@ -3,7 +3,10 @@
 function load_stylesheets(){ 
     wp_register_style('bsStyle', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css', array(), 1, 'all');
     wp_enqueue_style('bsStyle');
-    
+
+    wp_register_style('miStyle', 'https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css', array(), 1, 'all');
+    wp_enqueue_style('miStyle');
+
     // fonts
     wp_register_style('font1', 'https://fonts.googleapis.com/css2?family=Megrim&display=swap', array(), 1, 'all');
     wp_enqueue_style('font1');
@@ -21,8 +24,10 @@ add_action('wp_enqueue_scripts', 'load_stylesheets');
 function addjs(){
     wp_register_script('jquery', 'https://code.jquery.com/jquery-3.5.1.js', "", 1, 1, 1);
     wp_enqueue_script('jquery');
-    wp_register_script('bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js', "", 1, 1, 1);
+    // wp_register_script('bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js', "", 1, 1, 1);
+    wp_register_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js', "", 1, 1, 1);
     wp_enqueue_script('bootstrap');
+    
     // wp_register_script('custom',  get_template_directory_uri() . '/custom.js', "", 1, 1, 1);
     // wp_enqueue_script('custom');
 }
@@ -33,11 +38,11 @@ add_theme_support('menus');
 add_theme_support( 'post-thumbnails' );
 
 //reg menus
-register_nav_menus(
-    array('main-top-menu' => __('Main Top Menu','theme'),
+// register_nav_menus(
+//     array('main-top-menu' => __('Main Top Menu','theme'),
     
-    ) 
-);
+//     ) 
+// );
 
 //My get image by id and size function
 // $size = 'thumbnail' or 'medium' or 'medium_large' or 'large'
@@ -49,14 +54,14 @@ function getMyImage($id, $size){
 
 function post_contact() {
 
-    $page = get_page_by_path('home'); 
+    $page = get_page_by_path('home page'); 
 
     $messageError = '';
     $nameError = '';
     $emailError = '';
 
-    $myselfCh = trim(!isset($_POST['myselfCh'])? "" : $_POST['myselfCh']);
-    $lovedCh = trim(!isset($_POST['lovedCh'])? "" : $_POST['lovedCh']);
+    // $myselfCh = trim(!isset($_POST['myselfCh'])? "" : $_POST['myselfCh']);
+    // $lovedCh = trim(!isset($_POST['lovedCh'])? "" : $_POST['lovedCh']);
 
     if(trim($_POST['contactName']) === '') {
         $nameError = 'Please enter your name.';
@@ -88,7 +93,7 @@ function post_contact() {
         }
     }
 
-    $focus = trim($_POST['focus']);
+    $focus = '15'; //trim($_POST['focus']);
     if(!isset($hasError) && $focus === '15') {
         $emailTo = get_field( "contact_us_send_to_email_address",  $page->ID );
 
@@ -96,16 +101,16 @@ function post_contact() {
             $emailTo = get_option('admin_email');
         }
 
-        $subject = '[Affordable living Contact] From '.$name;
+        $subject = '[Contact] From '.$name;
         $body = "\n\nPhone: $phone \n\n";
         $body .= "Email: $email \n\n";
         $body .= "Name: $name \n\n";
 
-        $body .= "For: ";
-        $body .= $myselfCh === "true" ? "Myself" : "";
-        $body .= $myselfCh === "true" && $lovedCh === "true" ? " and " : "";
-        $body .= $lovedCh === "true" ? "a loved-one" : "";
-        $body .= "\n\n";
+        // $body .= "For: ";
+        // $body .= $myselfCh === "true" ? "Myself" : "";
+        // $body .= $myselfCh === "true" && $lovedCh === "true" ? " and " : "";
+        // $body .= $lovedCh === "true" ? "a loved-one" : "";
+        // $body .= "\n\n";
 
         $body .= "Message: $message \n\n";
         $headers = 'From: '.$name.' <'.$email.'>' . "\r\n" . 'Reply-To: ' .$name.' <'. $email.'>';        

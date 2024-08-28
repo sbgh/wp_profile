@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color:black;">
+<html lang="en" style="background-color:black; color:white;" data-bs-theme="dark">
 
 <head>
 
@@ -31,10 +31,16 @@
                             <a id="servicesBtn" class="nav-link" href="#">Our Services</a>
                         </li>
                         <li class="nav-item">
-                            <a id="industiesBtn" class="nav-link" href="#">Industries</a>
+                            <a id="industriesBtn" class="nav-link" href="#">Industries</a>
                         </li>
-                        <li class="nav-item">
-                            <a id="moreBtn" class="nav-link disabled" aria-disabled="true">More</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                More
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <li><a id="contactBtn" class="dropdown-item" href="#">Contact</a></li>
+                                <li><a id="loginBtn" class="dropdown-item" href="#">Login</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -53,7 +59,6 @@
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
 
-            //do 
 
             $("#splashTitle").css({
                 "transform": "translateX(0px)"
@@ -100,6 +105,17 @@
                 $("#keyboard-base").addClass("inPlace")
             }, 13000)
 
+            function shiftBackground() {
+                x = Math.random()
+                y = Math.random()
+                r = Math.random()
+                $("#glassback").css({
+
+                    "backdrop-filter": "blur(0px) brightness(" + (x + .5).toString() + ") contrast(1) grayscale(" + r + ") hue-rotate(0deg) invert(0%) opacity(1) sepia(0) saturate(1)"
+
+                })
+            }
+
             function keyPunch() {
 
                 let target = '.key'
@@ -124,6 +140,7 @@
                     }
                 });
                 setTimeout(function() {
+                    shiftBackground()
                     keyPunch()
                 }, 30000)
 
@@ -208,7 +225,7 @@
             $("#whyBtn").on("click", function() {
 
                 $("#main").animate({
-                    scrollTop: $("#whyUsWords").offset().top
+                    scrollTop: $("#whyUs").offset().top
                 }, 1000);
                 $("#whyBtn").addClass("active");
                 $("#servicesBtn").removeClass("active");
@@ -218,19 +235,38 @@
             $("#servicesBtn").on("click", function() {
 
                 $("#main").animate({
-                    scrollTop: $("#whyUsWords").offset().top
-                }, 1000);
+                    scrollTop: $("#services").offset().top
+                }, 1500);
                 $("#servicesBtn").addClass("active");
                 $("#whyBtn").removeClass("active");
                 $("#industryBtn").removeClass("active");
             });
 
-            $("#industryBtn").on("click", function() {
+            $("#industriesBtn").on("click", function() {
 
                 $("#main").animate({
-                    scrollTop: $("#whyUsWords").offset().top
+                    scrollTop: $("#industries").offset().top
                 }, 1000);
                 $("#industryBtn").addClass("active");
+                $("#whyBtn").removeClass("active");
+                $("#industryBtn").removeClass("active");
+            });
+
+            $("#contactBtn").on("click", function() {
+
+                $("#main").animate({
+                    scrollTop: $("#contactBuffer").offset().top
+                }, 1000);
+                $("#industryBtn").removeClass("active");
+                $("#whyBtn").removeClass("active");
+                $("#industryBtn").removeClass("active");
+            });
+
+            $("#loginBtn").on("click", function() {
+
+               $("#loginModal").modal("show")
+                
+                $("#industryBtn").removeClass("active");
                 $("#whyBtn").removeClass("active");
                 $("#industryBtn").removeClass("active");
             });
@@ -247,7 +283,6 @@
                     let sName = twoDeeArr[x][0]
                     let sDesc = twoDeeArr[x][1]
 
-
                     const itemHTML = "<div class='serviceItem'><div class='serviceItemName'>" + sName + "</div><div class='serviceItemDesc'>" + sDesc + "</div></div>"
                     const itemEle = $($.parseHTML(itemHTML))
 
@@ -256,7 +291,117 @@
                 }
             }
 
+            const industriesList = `<?php the_field('industries'); ?>`
+            const industriesArr = industriesList.split("\n")
+
+            if (industriesArr.length % 3 == 0) {
+
+                let threeDeeArr = [];
+                while (industriesArr.length) threeDeeArr.push(industriesArr.splice(0, 3));
+                for (let x in threeDeeArr) {
+
+                    let sName = threeDeeArr[x][0]
+                    let sDesc = threeDeeArr[x][1]
+                    let simg = threeDeeArr[x][2]
+
+                    const itemHTML = "<div class='industriesItem'><div class='industriesItemName'>" + sName + "</div><div class='industriesItemDesc'>" + sDesc + "</div></div>"
+                    const itemEle = $($.parseHTML(itemHTML))
+
+                    itemEle.css({
+
+                        "background-image": "linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5) ), url(" + simg + ")"
+                    })
+
+                    $("#industriesList").append(itemEle)
 
 
+                }
+            } else {
+                $("#industriesList").append("problem with industries list. Needs to be 3 lines per industry. name, description, image_url.")
+            }
+
+
+            $(".mdi-linkedin").on("click", function() {
+                window.open("<?php the_field('li_link'); ?>", "_new");
+            })
+            $(".mdi-twitter").on("click", function() {
+                window.open("<?php the_field('tw_link'); ?>", "_new");
+            })
+            $(".mdi-facebook").on("click", function() {
+                window.open("<?php the_field('fa_link'); ?>", "_new");
+            })
+
+            //Contact
+
+            $("#contactSubmit").on("click", function() {
+
+                focus = focus | 1;
+                $(".loader").fadeIn(200);
+                postForm();
+            })
+
+            var focus = 0;
+
+            function postForm() {
+                let target = 'input'
+                document.querySelectorAll(target).forEach((i) => {
+                    if (i) {
+                        $(i).prop("readonly", true).attr("disabled", true);
+                    }
+
+                })
+
+                $('textarea').prop("readonly", true).attr("disabled", true);
+
+                $(".formError").text('');
+                $("#nameError").text('');
+                $("#emailError").text('');
+                $("#messageError").text('')
+
+                $.ajax({
+                    type: "POST",
+                    url: "/wp-admin/admin-ajax.php",
+                    data: {
+                        action: 'post_contact',
+                        contactName: $('#contactName').val(),
+                        email: $('#email').val(),
+                        phone: $('#phone').val(),
+                        message: $('#message').val()
+                    },
+                    success: function(data) {
+                        var cObj = JSON.parse(data);
+                        $(".loader").fadeOut(0);
+
+                        if (cObj.hasError) {
+                            $(".formError").text("Sorry, an error occured.");
+
+                            if (cObj.hasOwnProperty("nameError")) {
+                                $("#nameError").text(cObj.nameError)
+                            }
+                            if (cObj.hasOwnProperty("emailError")) {
+                                $("#emailError").text(cObj.emailError)
+                            }
+                            if (cObj.hasOwnProperty("messageError")) {
+                                $("#messageError").text(cObj.messageError)
+                            }
+
+                            $('input').prop("readonly", false).attr("disabled", false);
+                            $('textarea').prop("readonly", false).attr("disabled", false);
+
+                        } else if (cObj.emailSent) {
+
+                            $(".formError").text("");
+                            $("#contactText").fadeOut(500);
+
+                            setTimeout(function() {
+                                $(".thanksContactMessage").fadeIn(500);
+                            }, 1000)
+                        } else {
+                            $('input').prop("readonly", false).attr("disabled", false);
+                            $('textarea').prop("readonly", false).attr("disabled", false);
+                        }
+                    }
+                });
+            }
         });
     </script>
